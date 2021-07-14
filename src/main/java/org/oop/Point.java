@@ -1,27 +1,33 @@
 package org.oop;
 
+import static java.lang.Math.*;
+
 public class Point {
-    private double x;
-    private double y;
+    private final double xCoordinate;
+    private final double yCoordinate;
 
-    public double getX() {
-        return x;
+    public Point(double xCoordinate, double yCoordinate) {
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public double distance(Point to) {
+        double xDistance = calculateDifference(to.xCoordinate, xCoordinate);
+        double yDistance = calculateDifference(to.yCoordinate, yCoordinate);
+        return sqrt(square(xDistance) + square(yDistance));
     }
 
-    public double getY() {
-        return y;
+    public double direction(Point to) {
+        double xDistance = calculateDifference(to.xCoordinate, xCoordinate);
+        double yDistance = calculateDifference(to.yCoordinate, yCoordinate);
+        return atan2(yDistance, xDistance);
     }
 
-    public void setY(double y) {
-        this.y = y;
+    private static double calculateDifference(double to, double from) {
+        return to - from;
     }
 
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
+    private static double square(double value) {
+        return pow(value, 2);
     }
 }
