@@ -12,22 +12,22 @@ public class Point {
     }
 
     public double distance(Point to) {
-        double xDistance = calculateDifference(to.xCoordinate, xCoordinate);
-        double yDistance = calculateDifference(to.yCoordinate, yCoordinate);
-        return sqrt(square(xDistance) + square(yDistance));
+        Point vector = calculateVector(to);
+        return sqrt(pow(vector.xCoordinate, 2) + pow(vector.yCoordinate, 2));
     }
 
     public double direction(Point to) {
+        Point vector = calculateVector(to);
+        return atan2(vector.yCoordinate, vector.xCoordinate);
+    }
+
+    private Point calculateVector(Point to) {
         double xDistance = calculateDifference(to.xCoordinate, xCoordinate);
         double yDistance = calculateDifference(to.yCoordinate, yCoordinate);
-        return atan2(yDistance, xDistance);
+        return new Point(xDistance, yDistance);
     }
 
     private static double calculateDifference(double to, double from) {
         return to - from;
-    }
-
-    private static double square(double value) {
-        return pow(value, 2);
     }
 }
